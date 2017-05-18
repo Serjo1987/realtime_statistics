@@ -1,0 +1,104 @@
+@import "compass/reset";
+@import "compass/css3";
+
+@mixin box-sizing($box-model: $default-box-sizing) {
+	$box-model: unquote($box-model);
+	@include prefixed-properties(css3-boxsizing, $box-sizing-support-threshold, (box-sizing: $box-model));
+}
+@mixin box-shadow($shadow...) {
+  $shadow: set-arglist-default($shadow, default-box-shadow());
+  @include prefixed-properties(css-boxshadow, $box-shadow-support-threshold, (box-shadow: $shadow));
+}
+
+html, body * {
+	@include box-sizing(border-box);
+	font-family: 'sans serif', 'open sans';
+	font-weight: lighter;
+	font-size: 16px;
+	color: black;
+	text-decoration: none;
+	max-height: 999999px;
+}
+body {
+  background: #fdfdfd;
+}
+
+/* Main page */
+
+.input-data {
+  margin: 50px 0;
+  padding: 20px 0 20px;
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+  background: #fff;
+  @include box-shadow(0 0 5px lightgrey);
+  text-align: center;
+
+  h1 {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 0 20px 0;
+    color: cornflowerblue;
+  }
+
+  .form-control {
+    max-width: 60%;
+    margin: 0 auto;
+  }
+
+  .input-block {
+    padding: 0 20px 0;
+
+    .control-label {
+      font-size: 13px;
+      display: block;
+      padding-left: 3px;
+      padding-bottom: 3px;
+      color: grey;
+    }
+  }
+  .input-output {
+    padding: 0 20px 0;
+    text-align: center;
+
+    p {
+      display: inline-block;
+      font-size: 20px;
+
+      span {
+        font-weight: bold;
+      }
+
+      &:not(:last-child) {
+        margin-right: 20px;
+
+        &:after {
+          content: '|';
+          padding-left: 20px;
+        }
+      }
+
+      &:nth-child(1) {
+        * {
+          color: #FF6384;
+        }
+      }
+      &:nth-child(2) {
+        * {
+          color: #36A2EB;
+        }
+      }
+      &:nth-child(3) {
+        * {
+          color: #FFCE56;
+        }
+      }
+    }
+  }
+
+  .chart-output {
+    margin-top: 30px;
+  }
+}
